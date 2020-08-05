@@ -6,18 +6,32 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet"
-          type="text/css"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous">
+    type="text/css"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
     <style>
         a.no-style {
             color: inherit;
             text-decoration: inherit;
         }
-
+        .white-txt {
+            color: white;
+            
+        }
+        .bottom-top-space {
+            margin-bottom: 10px;
+            margin-top: 5px;
+        }
+        .line {
+            text-decoration: underline;
+        }
         body {
             font-size: 16px;
+            background-image: url('./background.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed; 
+            background-size: 100% 100%;
         }
 
         label.no-style {
@@ -26,116 +40,117 @@
     </style>
 
     <script>
-       
+
 
     </script>
 </head>
 
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <h1>
-                StatiCrypt
-                <br>
-                <small>Password protect a static HTML page</small>
-            </h1>
-            <p>
-                Based on the <a href="https://github.com/brix/crypto-js">crypto-js library</a>, StatiCrypt uses AES-256
-                to encrypt your string with your passphrase in your browser (client side).
-            </p>
-            <p>
-                Download your encrypted string in a HTML page with a password prompt you can upload anywhere (see <a
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="white-txt">
+                    StatiCrypt
+                    <br>
+                    <small>Password protect a static HTML page</small>
+                </h1>
+                <p class="white-txt">
+                    Based on the <a href="https://github.com/brix/crypto-js">crypto-js library</a>, StatiCrypt uses AES-256
+                    to encrypt your string with your passphrase in your browser (client side).
+                </p>
+                <p class="white-txt">
+                    Download your encrypted string in a HTML page with a password prompt you can upload anywhere (see <a
                     target="_blank" href="example.html">example</a>).
-            </p>
-            <p>
-                The tool is also available as <a href="https://npmjs.com/package/staticrypt">a CLI on NPM</a>.
-            </p>
-            <br>
+                </p>
+                <p class="white-txt">
+                    The tool is also available as <a href="https://npmjs.com/package/staticrypt">a CLI on NPM</a>.
+                </p>
+                <br>
 
-            <h4><a class="no-style" id="toggle-concept" href="#">HOW IT WORKS ►</a></h4>
-            <div id="concept" class="hidden">
-                <p>
-                    <b class="text-danger">Disclaimer</b> if you have extra sensitive banking data, you should probably
-                    use something else!
-                </p>
-                <p>
-                    StatiCrypt generates a static, password protected page that can be decrypted in-browser:
-                    just send or upload the generated page to a place serving static content (github pages, for example)
-                    and you're done: the javascript will prompt users for password, decrypt the page and load your HTML.
-                </p>
-                <p>
-                    It basically encrypts your page and puts everything with a user-friendly way to use a password
-                    in the new file.
-                    <br>AES-256 is state of the art but <b>brute-force/dictionary attacks would be trivial to
-                    do at a really fast pace: use a long, unusual passphrase!</b>
-                </p>
-                <p>
-                    Feel free to contribute or report any thought to the
-                    <a href="https://github.com/robinmoisson/staticrypt">GitHub project</a>!
-                </p>
+                <h4 class="white-txt"><a class="no-style" id="toggle-concept" href="#">HOW IT WORKS ►</a></h4>
+                <div id="concept" class="hidden">
+                    <p  class="white-txt">
+                        <b class="text-danger">Disclaimer</b> if you have extra sensitive banking data, you should probably
+                        use something else!
+                    </p>
+                    <p  class="white-txt">
+                        StatiCrypt generates a static, password protected page that can be decrypted in-browser:
+                        just send or upload the generated page to a place serving static content (github pages, for example)
+                        and you're done: the javascript will prompt users for password, decrypt the page and load your HTML.
+                    </p>
+                    <p  class="white-txt">
+                        It basically encrypts your page and puts everything with a user-friendly way to use a password
+                        in the new file.
+                        <br>AES-256 is state of the art but <b>brute-force/dictionary attacks would be trivial to
+                        do at a really fast pace: use a long, unusual passphrase!</b>
+                    </p>
+                    <p  class="white-txt">
+                        Feel free to contribute or report any thought to the
+                        <a href="https://github.com/robinmoisson/staticrypt">Original GitHub project</a> or my <a href="https://github.com/404invalid-user/staticrypt">GitHub project</a>!
+                    </p>
+                </div>
+                <br>
             </div>
-            <br>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <form id="encrypt_form">
-                <div class="form-group">
-                    <label for="passphrase">Passphrase</label>
-                    <input type="password" class="form-control" id="passphrase"
-                           placeholder="Passphrase (choose a long one!)">
-                </div>
-                <div class="form-group">
-                    <label for="unencrypted_html">HTML/string to encrypt</label>
-                    <textarea class="form-control" id="unencrypted_html" placeholder="<html><head>..."
-                              rows="5"></textarea>
-                </div>
-                <p>
-                    <a href="#" id="toggle-extra-option">+ More options</a>
-                </p>
-                <div id="extra-options" class="hidden">
+        <div class="row">
+            <div class="col-xs-12">
+                <form id="encrypt_form">
                     <div class="form-group">
-                        <label for="title">Page title</label>
+                        <label  class="white-txt" style="text-decoration:underline;"  for="passphrase">Passphrase</label>
+                        <input type="password" class="form-control" id="passphrase"
+                        placeholder="Passphrase (choose a long one!)">
+                    </div>
+                    <div class="form-group">
+                        <label  class="white-txt" style="text-decoration:underline;" for="title">Page title</label>
                         <input type="text" class="form-control" id="title" placeholder="Default: 'Protected Page'">
                     </div>
                     <div class="form-group">
-                        <label for="instructions">Instructions to display the user</label>
-                        <textarea class="form-control" id="instructions" placeholder="Default: nothing."></textarea>
+                        <label  class="white-txt" style="text-decoration:underline;"  for="unencrypted_html">HTML/string to encrypt</label>
+                        <textarea class="form-control" id="unencrypted_html" placeholder="<html><head>..."
+                          rows="5"></textarea>
+                      </div>
+                      <p>
+                        <a href="#" id="toggle-extra-option">+ More options</a>
+                    </p>
+                    <div id="extra-options" class="hidden">
+                        <div class="form-group">
+                            <label  class="white-txt" for="instructions">Instructions to display the user</label>
+                            <textarea class="form-control" id="instructions" placeholder="Default: nothing."></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <label class="no-style">
-                        <input type="checkbox" id="embed-crypto" checked>
-                        Embed crypto-js into your file
-                        <abbr title="Leave checked to include crypto-js into your file so you can decrypt it offline.
-                        Uncheck to load crypto-js from a CDN (some adblockers might think it's a crypto miner).">?</abbr>
-                    </label>
-                </div>
+                    <div class="form-group">
+                        <label class="no-style white-txt">
+                            <input type="checkbox" id="embed-crypto" checked>
+                            Embed crypto-js into your file
+                            <abbr title="Leave checked to include crypto-js into your file so you can decrypt it offline.
+                            Uncheck to load crypto-js from a CDN (some adblockers might think it's a crypto miner).">?</abbr>
+                        </label>
+                    </div>
 
-                <button class="btn btn-primary pull-right" type="submit">Generate passphrase protected HTML</button>
-            </form>
+                    <button class="btn btn-primary pull-right" type="submit">Generate passphrase protected HTML</button>
+                </form>
+            </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-xs-12">
-            <h2>Encrypted HTML</h2>
-            <p><a class="btn btn-success download"
+        <div class="row">
+            <div class="col-xs-12">
+                <h2  class="white-txt">Encrypted HTML</h2>
+                <p><a class="btn btn-success download"
                   download="encrypted.html"
                   id="download-link"
                   disabled="disabled">Download html file with password prompt</a></p>
-            <pre id="encrypted_html_display">
-Your encrypted string</pre>
-        </div>
+                  <pre id="encrypted_html_display">
+                  Your encrypted string</pre>
+              </div>
+          </div>
+      </div>
+      <div class="pull-left bottom-top-space" style="margin-left:10px;">
+        <iframe src="https://ghbtns.com/github-btn.html?user=robinmoisson&repo=staticrypt&type=star&size=large"
+        frameborder="0" scrolling="0" width="80px" height="30px"></iframe>
+        <p  class="white-txt">Support the original developer and give them a star</p>
     </div>
-</div>
-    <div class="pull-left">
-                    <p style="margin-left: 10px;">Support the original developer and give them a star</p>
-                    <iframe src="https://ghbtns.com/github-btn.html?user=robinmoisson&repo=staticrypt&type=star&size=large"
-                            frameborder="0" scrolling="0" width="80px" height="30px"></iframe
-                </div>
+
 
 <!--
 Crypto JS 3.1.9-1
@@ -162,7 +177,7 @@ Filename changed to circumvent adblockers that mistake it for a crypto miner (se
      * Fill the password prompt template with data provided.
      * @param data
      */
-    var setFileToDownload = function (data) {
+     var setFileToDownload = function (data) {
         var request = new XMLHttpRequest();
         request.open('GET', 'password_template.html', true);
         request.onload = function() {
@@ -181,7 +196,7 @@ Filename changed to circumvent adblockers that mistake it for a crypto miner (se
      * Download crypto-js lib to embed it in the generated file, update the file when done.
      * @param data
      */
-    var setFileToDownloadWithEmbeddedCrypto = function (data) {
+     var setFileToDownloadWithEmbeddedCrypto = function (data) {
         var request = new XMLHttpRequest();
         request.open('GET', 'kryptojs-3.1.9-1-lib.js', true);
         request.onload = function() {
@@ -195,9 +210,9 @@ Filename changed to circumvent adblockers that mistake it for a crypto miner (se
      * Salt and encrypt a msg with a password.
      * Inspired by https://github.com/adonespitogo
      */
-    var keySize = 256;
-    var iterations = 1000;
-    function encrypt (msg, password) {
+     var keySize = 256;
+     var iterations = 1000;
+     function encrypt (msg, password) {
         var salt = CryptoJS.lib.WordArray.random(128/8);
 
         var key = CryptoJS.PBKDF2(password, salt, {
@@ -222,7 +237,7 @@ Filename changed to circumvent adblockers that mistake it for a crypto miner (se
     /**
      * Handle form submission.
      */
-    document.getElementById('encrypt_form').addEventListener('submit', function (e) {
+     document.getElementById('encrypt_form').addEventListener('submit', function (e) {
         e.preventDefault();
 
         // update instruction textarea value with CKEDITOR content
@@ -256,14 +271,14 @@ Filename changed to circumvent adblockers that mistake it for a crypto miner (se
 
     });
 
-    document.getElementById('toggle-extra-option')
-    .addEventListener('click', function (e) {
+     document.getElementById('toggle-extra-option')
+     .addEventListener('click', function (e) {
         e.preventDefault();
         document.getElementById('extra-options').classList.toggle('hidden');
     });
 
-    document.getElementById('toggle-concept')
-    .addEventListener('click', function (e) {
+     document.getElementById('toggle-concept')
+     .addEventListener('click', function (e) {
         e.preventDefault();
         document.getElementById('concept').classList.toggle('hidden');
     });
@@ -272,8 +287,8 @@ Filename changed to circumvent adblockers that mistake it for a crypto miner (se
     /**
      * Browser specific download code.
      */
-    document.getElementById('download-link')
-        .addEventListener('click', function (e) {
+     document.getElementById('download-link')
+     .addEventListener('click', function (e) {
 
         var isIE = (navigator.userAgent.indexOf("MSIE") !== -1 ) || (!!document.documentMode === true ); // >= 10
         var isEdge = navigator.userAgent.indexOf("Edge") !== -1;
@@ -287,7 +302,7 @@ Filename changed to circumvent adblockers that mistake it for a crypto miner (se
 
         return true;
     })
-    </script>
+</script>
 
 
 </body>
